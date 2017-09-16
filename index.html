@@ -13,14 +13,28 @@
     src="https://code.jquery.com/jquery-3.2.1.js"
     integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
     crossorigin="anonymous"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> -->
 
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300" rel="stylesheet">
     <link rel="stylesheet" media="all" href="public/css/styles.css">
   </head>
 
   <body>
-    <header>
-    </header>
+    <div class="container">
+      <div class="item">
+        <div class="sub-item" id="time"></div>
+        <div class="sub-item" id="city"></div>
+        <div class="sub-item" id="text"></div>
+        <div class="sub-item temperature">
+          <div class="fahrenheit" id="temp"></div>
+          <div class="unitsType" id="unitsType">°F</div>
+        </div>
+        <div class="sub-item weatherIcon" id="weatherIcon"></div>
+        <div class="sub-item button" id="switchUnitsType">Show in Metrics</div>
+      </div>
+    </div>
 
-    <script src="public/javascript/script.js"></script>
+    <script src="public/javascript/scripts.js"></script>
   </body>
 </html>

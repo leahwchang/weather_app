@@ -1,0 +1,446 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: #ffffff;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: auto 340px auto;
+  grid-template-rows: 20px 610px auto;
+  grid-template-areas:
+  "header header header"
+  ". body ."
+  "footer footer footer";
+}
+
+.item {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  grid-area: body;
+  border: 1px solid #ffffff;
+  border-radius: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 0px 0px 2px #dedede;
+}
+
+.temperature {
+  display: flex;
+  flex-direction: row;
+}
+
+#temp {
+  font-size: 70px;
+}
+
+#unitsType {
+  font-size: 70px;
+}
+
+#weatherIcon {
+  margin: 110px auto;
+}
+
+#switchUnitsType {
+  border-bottom: 1px solid #ffffff;
+}
+
+/* radius 100px */
+.cloud, .cloud::after, .cloud::before,
+.sun, .sun-rays, .long-rays::after, .long-rays::before, .short-rays::after, .short-rays::before,
+.moon, .moon::before, .fog, .fog::after, .fog::before {
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+}
+
+
+/*---------- cloud ----------*/
+.cloud {
+  width: 200px;
+  height: 80px;
+  background-color: #edf8ff;
+  box-shadow: 8px -3px #cbebfb inset;
+  position: relative;
+}
+
+.cloud::after, .cloud::before {
+  content: "";
+  background-color: #edf8ff;
+  position: absolute;
+  z-index: -1;
+}
+
+.cloud::after {
+  width: 135px;
+  height: 135px;
+  top: -55px;
+  left: 40px;
+}
+
+.cloud::before {
+  width: 100px;
+  height: 100px;
+  top: -20px;
+  right: -7px;
+}
+
+.dark {
+  background-color: #ccd8df;
+  box-shadow: 8px -3px #8ba3af inset;
+}
+
+.dark::after, .dark::before {
+  background-color: #ccd8df;
+}
+
+
+/*---------- sun ----------*/
+.sun {
+  width: 150px;
+  height: 150px;
+  display: block;
+  background-color: #fce755;
+  box-shadow: 8px -3px #fcc855 inset;
+  position: relative;
+}
+
+.sun-rays {
+  display: block;
+  position: absolute;
+  background-color: #fce755;
+}
+
+.long-rays {
+  width: 10px;
+  height: 60px;
+  top: -65px;
+  left: 45%;
+  box-shadow: 0 220px #fcc855;
+}
+
+.long-rays::after, .long-rays::before {
+  content: "";
+  width: 10px;
+  height: 60px;
+  position: absolute;
+  transform: rotate(90deg);
+}
+
+.long-rays::after {
+  top: 110px;
+  right: -115px;
+  background-color: #fce755;
+}
+
+.long-rays::before {
+  top: 110px;
+  right: 110px;
+  background-color: #fcc855;
+}
+
+.short-rays {
+  width: 40px;
+  height: 10px;
+  top: 0;
+  left: 85%;
+  box-shadow: 203px 0 #fcc855;
+  transform: rotate(135deg);
+}
+
+.short-rays::after, .short-rays::before {
+  content: "";
+  width: 40px;
+  height: 10px;
+  position: absolute;
+  transform: rotate(90deg);
+}
+
+.short-rays::after {
+  top: 103px;
+  right: -105px;
+  background-color: #fcc855;
+}
+
+.short-rays::before {
+  top: -100px;
+  right: -100px;
+  background-color: #fce755;
+}
+
+
+/*---------- moon & stars ----------*/
+.moon {
+  width: 150px;
+  height: 150px;
+  box-shadow: 60px -40px #e1eff2 inset;
+  position: relative;
+}
+
+.moon::before {
+  content: "";
+  width: 150px;
+  height: 150px;
+  margin-left: -75px;
+  box-shadow: 8px -3px #5899a2 inset;
+  position: absolute;
+  z-index: 1;
+}
+
+.star-rays {
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  border-bottom: 15px solid #e1eff2;
+  position: absolute;
+}
+
+.v-ray {
+  top: 20px;
+  right: -10px;
+  transform: rotate(90deg);
+}
+
+.h-ray {
+  top: 10px;
+  right: 0;
+}
+
+.v-ray::after, .h-ray::after {
+  content: "";
+  border: 5px solid transparent;
+  border-top: 15px solid #e1eff2;
+  top: 15px;
+  right: -5px;
+  position: absolute;
+}
+
+
+/*---------- few clouds with sun - with moon ----------*/
+.few-clouds-sun > .sun {
+  z-index: -1;
+  margin-left: 25px;
+  margin-top: -20px;
+}
+
+.few-clouds-sun > .cloud {
+  margin-top: -30px;
+  margin-left: -65px;
+  position: absolute;
+}
+
+.few-clouds-moon > .moon {
+  z-index: -1;
+  margin-top: -30px;
+  margin-left: 115px;
+}
+
+.few-clouds-moon > .dark {
+  margin-top: -40px;
+  margin-left: -10px;
+  position: absolute;
+}
+
+/*---------- broken clouds - day - night ----------*/
+.broken-clouds-d, .broken-clouds-n {
+  position: relative;
+  top: 10px;
+  left: 15px;
+}
+
+.broken-clouds-d > .two, .broken-clouds-n > .two {
+  top: -50px;
+  left: -65px;
+  position: absolute;
+  z-index: -2;
+  transform: scale(0.78, 0.78);
+}
+
+.broken-clouds-d > .two {
+  background-color: #d6e7f1;
+  box-shadow: 8px -3px #9fc6da inset;
+}
+
+.broken-clouds-d > .two::after, .broken-clouds-d > .two::before {
+  background-color: #d6e7f1;
+}
+
+.broken-clouds-n > .two {
+  background-color: #adbcc4;
+  box-shadow: 8px -3px #6c818c inset;
+}
+
+.broken-clouds-n > .two::after, .broken-clouds-n > .two::before {
+  background-color: #adbcc4;
+}
+
+
+/*---------- shower/rain - day - night ----------*/
+.rain {
+  width: 5px;
+  height: 27px;
+  background-color: #61a4d4;
+  -moz-border-radius: 20%;
+  -webkit-border-radius: 20%;
+  border-radius: 20%;
+  margin-top: 5px;
+  margin-left: 50px;
+  transform: skewX(-20deg);
+  position: absolute;
+}
+
+.rain::after, .rain::before {
+  content: "";
+  width: 5px;
+  background-color: #61a4d4;
+  -moz-border-radius: 20%;
+  -webkit-border-radius: 20%;
+  border-radius: 20%;
+  position: absolute;
+}
+
+.rain::after {
+  height: 32px;
+  top: 5px;
+  left: 50px;
+}
+
+.rain::before {
+  height: 22px;
+  left: 100px;
+}
+
+.heavy-rain {
+  margin-top: 15px;
+  margin-left: 60px;
+}
+
+.heavy-rain::before {
+  box-shadow: -75px 10px 0 0 #368bc7;
+}
+
+.heavy-rain::after {
+  box-shadow: 25px -5px 0 0 #368bc7;
+}
+
+
+/*---------- thunder ----------*/
+.thunder {
+  width: 25px;
+  height: 40px;
+  margin-left: 100px;
+  background-color: #ffe03d;
+  position: absolute;
+  transform: skewX(-30deg) skewY(10deg);
+  z-index: -1;
+}
+
+.thunder::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 50px solid #ffe03d;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  top: 25px;
+  left: 20px;
+}
+
+
+/*---------- snow flakes ----------*/
+.flake::after, .flake::before {
+  content: "\2744 ";
+  color: #c5eafc;
+  position: absolute;
+  display: block;
+}
+
+.flake::after {
+  font-size: 40px;
+  margin-top: 3px;
+  margin-left: 85px;
+}
+
+.flake::before {
+  font-size: 60px;
+  margin-top: 10px;
+  margin-left: 115px;
+}
+
+
+/*---------- mist fog ----------*/
+.mist {
+  overflow: hidden;
+  position: relative;
+  width: 198px;
+  height: 100px;
+}
+
+.fog {
+  width: 200px;
+  height: 20px;
+  position: absolute;
+  background: radial-gradient(16px, transparent, transparent 4px, #b9c5e3 4px, #b9c5e3 10px, transparent 11px);
+  background-size: 30px 40px;
+}
+
+.fog2 {
+  top: 20px;
+  left: 15px;
+  background-position: 0 -20px;
+}
+
+.fog1::before {
+  top: 30px;
+  left: 0px;
+  content: "";
+  width: 200px;
+  height: 20px;
+  background: radial-gradient(16px, transparent, transparent 4px, #b9c5e3 4px, #b9c5e3 10px, transparent 11px);
+  background-size: 30px 40px;
+  position: absolute;
+}
+
+.fog1::after {
+  top: 50px;
+  left: 15px;
+  content: "";
+  width: 210px;
+  height: 20px;
+  background: radial-gradient(16px, transparent, transparent 4px, #b9c5e3 4px, #b9c5e3 10px, transparent 11px);
+  background-size: 30px 40px;
+  position: absolute;
+  transform: rotate(180deg);
+}
+
+.fog2::before {
+  top: 40px;
+  right: 15px;
+  content: "";
+  width: 200px;
+  height: 20px;
+  background: radial-gradient(16px, transparent, transparent 4px, #b9c5e3 4px, #b9c5e3 10px, transparent 11px);
+  background-size: 30px 40px;
+  position: absolute;
+}
+
+.fog2::after {
+  top: 60px;
+  left: 0px;
+  content: "";
+  width: 210px;
+  height: 20px;
+  background: radial-gradient(16px, transparent, transparent 4px, #b9c5e3 4px, #b9c5e3 10px, transparent 11px);
+  background-size: 30px 40px;
+  position: absolute;
+  transform: rotate(180deg);
+}
